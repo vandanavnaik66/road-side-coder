@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'; 
 import "./style.css"
 import { Rating } from './Rating';
+import { useCartContext } from '../Context/Context';
 
 export const Filter = () => {
-const[rating,setRating] = useState();
-
-function clearFilter(){
-    setRating(0)
-}
+   let {state : {products},productFilter,productFilter:{sort,inStock,fastDelivery,ratings,searchQuery},productFilterDispatch} = useCartContext();
 
   return (
     <div className='filter'>
@@ -19,6 +16,8 @@ function clearFilter(){
     label="Ascending"
     name="group1"
     type="radio"
+    checked={sort == "lowToHigh"}
+    onChange={()=>productFilterDispatch({type:"Filter_By_Sort",payload:"lowToHigh"})}
           />
           </span>
           <span>
@@ -26,27 +25,34 @@ function clearFilter(){
     label="Descending"
     name="group1"
     type="radio"
+    id="descend"
+    checked={sort == "highToLow"}
+    onChange={(e)=>productFilterDispatch({type:"Filter_By_Sort",payload:"highToLow"})}
           />
           </span>
           <span>
           <Form.Check
     label="Include Out of Stock"
-    name="group1"
+    name="outOfStock"
     type="checkbox"
+    checked={inStock}
+    onChange={()=>productFilterDispatch({type:"Filter_By_Instock"})}
           />
           </span>
           <span>
           <Form.Check
           label="Fast Delivery Only"
-          name=""
+          name="fastDelivery"
           type="checkbox"
+    checked={fastDelivery}
+    onChange={()=>productFilterDispatch({type:"Filter_By_Fastdelivery"})}
                 />
         </span>
         <span>
             <label style={{paddingRight:"10px"}}>Ratings :</label>
-            <Rating  rating={rating} setRating={setRating} />
+            <Rating rating={ratings} onClick={(i)=>productFilterDispatch({type:"Filter_By_Rating",payload:i})}/>
         </span>
-    <Button variant="light" style={{fontSize:"14px"}} onClick={clearFilter}>Clear Filter</Button>
+    <Button variant="light" style={{fontSize:"14px"}} onClick={()=>productFilterDispatch({type:"Clear_Filter"})}>Clear Filter</Button>
     </div>
   )
 }

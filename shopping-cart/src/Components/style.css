@@ -9,6 +9,10 @@
     margin: 10px;
     width: 75%;
 }
+.productContainerCart{
+    margin: 10px;
+    width: 75%; 
+}
 .filter{
     display: flex;
     flex-direction: column;
@@ -19,7 +23,14 @@
     margin: 10px;
     padding: 15px;
 }
-
+.TotalCountInCart{
+    height: 100vh;
+    width: 20%;
+    background-color: #343a40;
+    color: white;
+    margin: 10px;
+    padding: 15px;   
+}
 .filter > span {
     padding-bottom: 20px;
     font-size: 14px;
@@ -27,4 +38,51 @@
 .rating{
     display: inline !important;
     cursor: pointer;
+}
+.cart-drop-container{
+    display: flex;
+    align-items: center;
+}
+.cart-drop-container > img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin:0 10px;
+
+}
+.cart-drop-text{
+    margin: 0 10px
+}
+.cart-drop-text > p{
+    margin-bottom: 0;
+    font-size: 13px;  
+}
+.cart-drop-delete{
+ margin: 10px;
+ margin-top: 0;
+}
+.go-to-cart-btn{
+    display: flex;
+    justify-content: center;
+}
+.go-to-cart-btn > Button{
+font-size: 12px;
+font-weight: 500;
+}
+.cart-list-img{
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+}
+.clearBtn{
+    padding: 0 15px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-left: 10px;
+}
+.singleProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
